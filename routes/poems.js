@@ -32,6 +32,26 @@ router.get("/poems/:query", async(req, res, next) =>{
         next(err);
     }
 });
+router.post("/poems", async (req, res, next) => {
+    try {
+        const { title, poem, poet } = req.body; 
+        let poetId;
+        const existingPoet = await db("poets").where("name", poet).first();
+        if (existingPoet) {
+            poetId = existingPoet.id;
+        } else {
+           
+            const [newPoetId] = await db("poets").insert({ name: poet });
+            poetId = newPoetId;
+        }
+
+        const [newPoemId] = await db("poems").insert({ title, poem, poet_id: poetId });
+
+        res.status(201).json({ id: newPoemId, message: "Poem created successfully." });
+    } catch (err) {
+        next(err);
+    }
+});
 
 
 
