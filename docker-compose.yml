@@ -1,12 +1,14 @@
 version: "3.7"
 services:
   db:
-    image: mysql
-    container_name: mysql-container
-    command: --default-authentication-plugin=mysql_native_password
+    image: postgres
+    container_name: postgres-container
     environment:
-      - MYSQL_ROOT_PASSWORD="root"
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
     volumes:
-      - ./api/db/data:/var/lib/mysql
+      - ./api/db/data:/var/lib/postgresql/data
+    shm_size: 128mb
+    ports:
+      - "5432:5432"
     restart: always
-    
