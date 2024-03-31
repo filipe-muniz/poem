@@ -1,12 +1,13 @@
-require("dotenv").config()
+require("dotenv").config();
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
 module.exports = {
   development: {
-    client: "mysql",
+    client: "pg",
     connection: {
+      connectionString: process.env.PG_CONNECTION_STRING,
       host: process.env.DB_HOST,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
@@ -14,6 +15,6 @@ module.exports = {
     },
     migrations: {
       directory: "./db/migrations",
-    }
-  }
+    },
+  },
 };
