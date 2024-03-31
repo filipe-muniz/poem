@@ -7,7 +7,7 @@ app.use((err, req, res, next) => {
   res.status(500).send("Internal Server Error");
 });
 
-const poemsRouter = require("../routes/poems.js");
+const poemsRouter = require("../../routes/poems.js");
 app.use(express.json());
 
 app.listen(PORT, () =>
