@@ -1,0 +1,107 @@
+= Como fazer
+:source-highlighter: highlightjs
+
+== Primeira parte
+
+Roda o docker compose pra subir o container do postgres. Precisa fazer toda vez que for mexer no projeto. 
+Na primeira vez, ele vai demorar um pouco mais pq vai baixar a imagem e fazer ela funcionar ainda, mas as
+próximas vezes vai ser bem mais rápido e ele vai manter todos os dados, igual é a ideia de um banco de dados.
+
+Bora rodar então:
+
+[,shell]
+
+----
+$ docker compose up
+----
+
+Ele vai dar um monte de mensagem no terminal, provavelmente vai dar certo. Quando ele parar, se ele só estiver parado, significa que deu certo.
+
+Depois eu vou tentar automatizar a criação do banco com as migrations do knex, mas antes eu preciso aprender a fazer isso
+
+ERROS: Pode ser que tenha algum erro, dizendo tipo:
+
+[,shell]
+----
+$ docker compose up
+
+[+] Running 0/0
+ ⠋ Container postgres-container   Creating                                                 0.0s
+
+Error response from daemon: Conflict. The container name "/postgres-container" is already in use by container "f5eaabad6b2e01e2cb06dd694f087de45b8c874a77c0dfa504a2a41ffc69dea9". You have to remove (or rename) that container to be able to reuse that name.
+----
+
+Se isso acontecer, significa que vc já tem um com o mesmo nome. Provavelmente aconteceu só no meu aqui porque eu mudei as pastas e daí ele acha que é outro projeto. Mas, de qualquer forma, é só ligar ele com `+$ docker start postgres-container+` ou apagar ele e dar o docker compose, que daí ele vai sempre iniciar quando você der o compose up.
+
+Do primeiro jeito ele não vai iniciar, daí vc vai ter que dar o docker start todas as vezes que for ligar.
+
+== Segunda parte
+
+Depois que tiver conseguido rodar, você vai abrir outro terminal. Nele, você vai digitar o seguinte:
+
+[,shell]
+----
+$ docker exec -it -u postgres postgres-container bash
+----
+
+Ele vai abrir o docker no modo iterativo. Você basicamente vai entrar no container e vai poder mexer no banco, como se ele estivesse rodando na sua máquina igual um serviço comum.
+
+Agora, você vai dar os comandos pra criar o banco de dados, entrar nele, criar as tabelas e, enfim, importar os dados.
+
+== Terceira parte
+
+Agora que deu certo e você está no postgres, vai digitar o seguinte no shell que você acabou de entrar:
+
+[,shell]
+----
+$ createdb poems
+----
+
+Está criado!!! Agora é só entrar no seu banco de dados criado:
+
+
+[,shell]
+----
+$ psql poems
+----
+
+Você deve ter mudado a parte inicial do shell e ele deve estar mostrando agora, em algum lugar, o nome do banco que você está. Deve estar com algo parecido com isso:
+
+[,bash]
+----
+psql (16.2)
+Type "help" for help.
+
+poems=>
+----
+
+Sucesso!!!
+
+Agora é só rodar os comandos sql, igual faria normal em qualquer sgdb. Inclusive, já é um momento legal pra conectar e começar a usar um, pra testar a conexão e tals.
+
+Primeiro:
+
+[,sql]
+----
+create table poems.poets (
+	id serial not null primary key,
+	name text
+)
+----
+
+[,sql]
+
+-----
+create table poems.poems (
+  id serial not null,
+  title varchar(255) default null,
+  poem text,
+  poet_id int default null,
+  primary key (id),
+  CONSTRAINT poems_ibfk_1 foreign key (poet_id) references poets(id)
+)
+-----
+
+== Fim
+
+Parabéns! se tudo der certo, é pra estar tudo funcionando.

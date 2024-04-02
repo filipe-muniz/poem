@@ -8,10 +8,6 @@ module.exports = {
     client: "pg",
     connection: {
       connectionString: process.env.PG_CONNECTION_STRING,
-      host: process.env.DB_HOST,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
     },
     migrations: {
       directory: "./db/migrations",
