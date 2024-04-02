@@ -1,7 +1,3 @@
-drop schema if exists poems cascade;
-
-create schema poems;
-
 create table poems.poets (
 	id serial not null primary key,
 	name text
