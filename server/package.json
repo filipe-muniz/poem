@@ -4,7 +4,8 @@
   "description": "an simple api for requesting querys",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "npx prettier -c src/ routes/ && nodemon src/index.js",
+    "style": "npx prettier -w src/ routes/"
   },
   "license": "MIT",
   "dependencies": {
