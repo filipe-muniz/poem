@@ -1,0 +1,36 @@
+.app-name {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: x-large;
+  color: #ddd;
+  margin-bottom: 0;
+}
+
+.app-name::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 60%;
+    height: 3px;
+    background: #ddd;
+    transition: transform 0.2s ease-in-out;
+    transform: scale(0);
+}
+
+.app-name:hover::after{
+  transform: scale(1);
+}
+
+.link-item {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: medium;
+  margin-bottom: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #ddd;
+}
+
+a:hover {
+  color: lightblue;
+}
