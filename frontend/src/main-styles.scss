@@ -1,9 +1,11 @@
+$primary-color: #222222;
+
 html, body {
   height: 100%;
 }
 
 html {
-  background-color: #222222;
+  background-color: $primary-color;
 
   overflow-y: auto !important;
 }

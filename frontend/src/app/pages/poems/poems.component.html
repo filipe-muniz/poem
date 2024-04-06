@@ -1,6 +1,43 @@
-<div class="navbar has-background-dark">
-  <mat-icon routerLink="/" routerLinkActive="active" class="go-back-button"
-    >arrow_back</mat-icon
-  >
-  <span class="go-back-text">| All Poems</span>
+<div class="wrapper">
+  <div class="navbar has-background-dark">
+    <mat-icon routerLink="/" routerLinkActive="active" class="go-back-button"
+      >arrow_back</mat-icon
+    >
+    <span class="go-back-text">| All Poems</span>
+  </div>
+
+  <table class="table" mat-table [dataSource]="poems">
+    <!-- Id column -->
+    <ng-container matColumnDef="id">
+      <th class="table-header" mat-header-cell *matHeaderCellDef>ID</th>
+      <td class="table-cell" mat-cell *matCellDef="let poem">{{ poem.id }}</td>
+    </ng-container>
+
+    <!-- Title column  -->
+    <ng-container matColumnDef="title">
+      <th class="table-header" mat-header-cell *matHeaderCellDef>Title</th>
+      <td class="table-cell" mat-cell *matCellDef="let poem">
+        {{ poem.title }}
+      </td>
+    </ng-container>
+
+    <!-- Poem column -->
+    <ng-container matColumnDef="poem">
+      <th class="table-header" mat-header-cell *matHeaderCellDef>Poem</th>
+      <td class="table-cell" mat-cell *matCellDef="let poem">
+        {{ poem.poem }}
+      </td>
+    </ng-container>
+
+    <!-- Poet_id column -->
+    <ng-container matColumnDef="poet_id">
+      <th class="table-header" mat-header-cell *matHeaderCellDef>Poet_id</th>
+      <td class="table-cell" mat-cell *matCellDef="let poem">
+        {{ poem.poet_id }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
 </div>

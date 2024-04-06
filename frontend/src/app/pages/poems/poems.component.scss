@@ -2,6 +2,10 @@ div {
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+.wrapper {
+  overflow-x: auto;
+}
+
 .go-back-button {
   margin-left: 10px;
   margin-right: 10px;
@@ -16,4 +20,18 @@ div {
 .navbar {
   display: flex;
   align-items: center;
+}
+
+.table {
+  margin: 10px;
+  background-color: #222222;
+}
+
+.tablle-header {
+  text-align: center;
+}
+
+.table-header, .table-cell {
+  padding: 10px;
+  color: white;
 }
