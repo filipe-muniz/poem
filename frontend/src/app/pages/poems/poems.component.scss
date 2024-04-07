@@ -22,13 +22,14 @@ div {
   align-items: center;
 }
 
-.table {
+.table-wrapper {
   margin: 10px;
-  background-color: #222222;
+  max-width: 80%;
+  text-align: center;
 }
 
-.tablle-header {
-  text-align: center;
+.table {
+  background-color: #222222;
 }
 
 .table-header, .table-cell {
