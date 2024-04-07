@@ -27,6 +27,31 @@ router.get('/poems', async (req, res, next) => {
   }
 });
 
+router.get('/poets/all', async (req, res, next) => {
+  try {
+    const poets = await db.select('*').from('poets');
+    res.json(poets);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/poets', async (req, res, next) => {
+  try {
+    let { limit } = req.query;
+
+    if (limit === null || limit === undefined) {
+      limit = 10;
+    }
+
+    const poets = await db.select('*').from('poets').limit(limit);
+
+    res.json(poets);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/poets/:name', async (req, res, next) => {
   try {
     const poetName = req.params.name;

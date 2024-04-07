@@ -1,0 +1,31 @@
+<div class="wrapper">
+  <div class="navbar has-background-dark">
+    <mat-icon routerLink="/" routerLinkActive="active" class="go-back-button"
+      >arrow_back</mat-icon
+    >
+    <span class="go-back-text">| All Poets</span>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="table" mat-table [dataSource]="poets">
+      <!-- Id column -->
+      <ng-container matColumnDef="id">
+        <th class="table-header" mat-header-cell *matHeaderCellDef>ID</th>
+        <td class="table-cell" mat-cell *matCellDef="let poet">
+          {{ poet.id }}
+        </td>
+      </ng-container>
+
+      <!-- Name column  -->
+      <ng-container matColumnDef="name">
+        <th class="table-header" mat-header-cell *matHeaderCellDef>Name</th>
+        <td class="table-cell" mat-cell *matCellDef="let poet">
+          {{ poet.name }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>
