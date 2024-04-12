@@ -1,6 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
-@import './main-styles.scss';
-@import '../node_modules/bulma/bulma.scss';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@use '@angular/material' as mat;
+@import "../node_modules/@angular/material/prebuilt-themes/purple-green.css";
+
+@include mat.core();
+
+$my-primary: mat.define-palette(mat.$indigo-palette, 500);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$light-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+ ),
+ typography: mat.define-typography-config(),
+ density: 0,
+));
+
+$dark-theme: mat.define-dark-theme((
+ color: (
+   primary: mat.define-palette(mat.$pink-palette),
+   accent: mat.define-palette(mat.$blue-grey-palette),
+ ),
+  // Only include `typography` and `density` in the default dark theme.
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+@include mat.core-theme($dark-theme);
+@include mat.button-theme($dark-theme);
+
+@media (prefers-color-scheme: light){
+  @include mat.core-color($light-theme);
+  @include mat.button-color($light-theme);
+}
