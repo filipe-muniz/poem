@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { MatIconButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -12,6 +13,7 @@ import { PoetsService } from '../../services/poets.service';
   standalone: true,
   imports: [
     MatIconModule,
+    MatIconButton,
     MatToolbarModule,
     RouterLink,
     RouterLinkActive,
